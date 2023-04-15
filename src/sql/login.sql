@@ -7,26 +7,26 @@ USE MASTER
 GO
 
 --DROP LOGIN labbd;
-CREATE LOGIN labbd WITH PASSWORD = 'fatec123';
+CREATE LOGIN user_loja WITH PASSWORD = 'fatec123';
 GO
 
-GRANT CONNECT SQL TO LOJA;
+GRANT CONNECT SQL TO user_loja;
 GO
 
 USE LOJA
 GO
 
---DROP USER Labbd
-CREATE USER labbd FOR LOGIN labbd;
+--DROP USER user_loja
+CREATE USER user_loja FOR LOGIN user_loja;
 GO
 
-GRANT EXECUTE ON LOJA.dbo.sp_Produtos_Inserir TO labbd;
-GRANT EXECUTE ON LOJA.dbo.sp_Produtos_Alterar TO labbd;
-GRANT EXECUTE ON LOJA.dbo.sp_Produtos_Deletar TO labbd;
-GRANT EXECUTE ON LOJA.dbo.sp_Produtos_ConsultarTodos TO labbd;
-GRANT EXECUTE ON LOJA.dbo.sp_Produtos_ConsultarPorId TO labbd;
-GRANT EXECUTE ON LOJA.dbo.sp_Pedidos_Inserir TO labbd;
-GRANT EXECUTE ON LOJA.dbo.sp_Pedidos_Alterar TO labbd;
-GRANT EXECUTE ON LOJA.dbo.sp_Pedidos_Deletar TO labbd;
-GRANT EXECUTE ON LOJA.dbo.sp_Pedidos_ConsultarTodos TO labbd;
-GRANT EXECUTE ON LOJA.dbo.sp_Pedidos_ConsultarPorId TO labbd;
+GRANT EXECUTE ON LOJA.dbo.sp_Produtos_Inserir TO user_loja;
+GRANT EXECUTE ON LOJA.dbo.sp_Produtos_Alterar TO user_loja;
+GRANT EXECUTE ON LOJA.dbo.sp_Produtos_Deletar TO user_loja;
+GRANT EXECUTE ON LOJA.dbo.sp_Produtos_ConsultarTodos TO user_loja;
+GRANT EXECUTE ON LOJA.dbo.sp_Produtos_ConsultarPorId TO user_loja;
+GRANT EXECUTE ON LOJA.dbo.sp_Pedidos_Inserir TO user_loja;
+GRANT EXECUTE ON LOJA.dbo.sp_Pedidos_Alterar TO user_loja;
+GRANT EXECUTE ON LOJA.dbo.sp_Pedidos_Deletar TO user_loja;
+GRANT EXECUTE ON LOJA.dbo.sp_Pedidos_ConsultarTodos TO user_loja;
+GRANT EXECUTE ON LOJA.dbo.sp_Pedidos_ConsultarPorId TO user_loja;
