@@ -7,7 +7,7 @@ CREATE TABLE Produtos (
   id INT IDENTITY(1,1) PRIMARY KEY,
   nome VARCHAR(50) NOT NULL,
   preco DECIMAL(10,2) NOT NULL,
-  status VARCHAR(10) CHECK (status IN ('ativo', 'inativo'))
+  status VARCHAR(10) CHECK (status IN ('ativo', 'inativo')) -- Qualquer outra entrada sera rejeitada
 );
 
 CREATE TABLE Pedidos (
@@ -15,7 +15,7 @@ CREATE TABLE Pedidos (
   cliente VARCHAR(50) NOT NULL,
   dataPedido DATE NOT NULL,
   valorTotal DECIMAL(10,2) DEFAULT 0.00,
-  status VARCHAR(10) CHECK (status IN ('pendente', 'em andamento', 'concluído')),
+  status VARCHAR(10) CHECK (status IN ('pendente', 'em andamento', 'concluído')),-- Qualquer outra entrada sera rejeitada
   codigoPedido INT UNIQUE,
   idProduto INT NOT NULL,
   FOREIGN KEY (idProduto) REFERENCES Produtos(id)
