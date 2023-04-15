@@ -5,11 +5,13 @@ import { sqlConfig } from '../sql/config.js'
 
 const router = express.Router()
 
+// lista todos os produtos 
+
 router.get('/', (req, res) => {
     try {
         sql.connect(sqlConfig).then(pool => {
             return pool.request()
-                .execute('SP_S_EST_VEICULO')
+                .execute('sp_Produtos_ConsultarTodos')
         }).then(dados => {
             res.status(200).json(dados.recordset)
         }).catch(err => {

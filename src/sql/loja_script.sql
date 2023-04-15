@@ -37,6 +37,10 @@ BEGIN
   VALUES (@nome, @preco, @status)
 END
 
+EXEC sp_Produtos_Inserir 'Produto 1', 10.50, 'ativo'
+EXEC sp_Produtos_Inserir 'Produto 2', 20.75, 'inativo'
+EXEC sp_Produtos_Inserir 'Produto 3', 30.00, 'ativo'
+
 
 /*Procedure para alteração*/
 
