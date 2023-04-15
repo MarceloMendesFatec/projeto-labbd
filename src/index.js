@@ -1,5 +1,6 @@
 import express from 'express'
 import cors from 'cors'
+import rotasLoja from './routes/loja.js'
 
 
 const app = express()
@@ -11,6 +12,7 @@ app.use(express.json()) // Parse JSON
 /* Rotas do Veículo */
 // app.use('/api/veiculos', rotasVeiculos)
 
+app.use('/produtos',rotasLoja) //)
 /* Rotas públicas */
 app.use('/', express.static('public'))
 
