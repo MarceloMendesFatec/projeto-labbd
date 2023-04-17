@@ -7,7 +7,7 @@ CREATE TABLE Produtos (
   id INT IDENTITY(1,1) PRIMARY KEY,
   nome VARCHAR(50) NOT NULL,
   preco DECIMAL(10,2) NOT NULL,
-  status VARCHAR(10) CHECK (status IN ('ativo', 'inativo')) -- Qualquer outra entrada sera rejeitada
+  status VARCHAR(10) CHECK (status IN ('disponivel', 'indisponivel')) -- Qualquer outra entrada sera rejeitada
 );
 
 CREATE TABLE Pedidos (
@@ -37,9 +37,9 @@ BEGIN
   VALUES (@nome, @preco, @status)
 END
 
-EXEC sp_Produtos_Inserir 'Produto 1', 10.50, 'ativo'
-EXEC sp_Produtos_Inserir 'Produto 2', 20.75, 'inativo'
-EXEC sp_Produtos_Inserir 'Produto 3', 30.00, 'ativo'
+EXEC sp_Produtos_Inserir 'Produto 1', 10.50, 'disponivel'
+EXEC sp_Produtos_Inserir 'Produto 2', 20.75, 'indisponivel'
+EXEC sp_Produtos_Inserir 'Produto 3', 30.00, 'disponivel'
 
 
 /*Procedure para alteração*/
@@ -94,6 +94,16 @@ CREATE PROCEDURE sp_Pedidos_Inserir
   @idProduto INT
 AS
 BEGIN
+  -- Verifica se o produto está disponível
+  IF NOT EXISTS (SELECT id FROM Produtos WHERE id = @idProduto AND status = 'ativo')
+  BEGIN
+    -- Produto indisponível, lança uma exceção
+    DECLARE @mensagem VARCHAR(100) = 'Não foi possível concluir seu pedido. Produto indisponível.'
+    RAISERROR (@mensagem, 16, 1)
+    RETURN
+  END
+  
+  -- Produto disponível, insere o pedido na tabela
   INSERT INTO Pedidos (cliente, dataPedido, valorTotal, status, codigoPedido, idProduto)
   VALUES (@cliente, @dataPedido, @valorTotal, @status, @codigoPedido, @idProduto)
 END
@@ -115,6 +125,9 @@ BEGIN
   status = @status, codigoPedido = @codigoPedido, idProduto = @idProduto
   WHERE id = @id
 END
+
+EXEC sp_Pedidos_Inserir 'Cliente A', '2023-04-17', 50.00, 'pendente', 423, 1;
+
 
 /*Procedure de deleção*/
 
@@ -142,3 +155,16 @@ AS
 BEGIN
   SELECT * FROM Pedidos WHERE id = @id
 END
+
+/*funcao para retornar produtos indisponiveis*/
+
+CREATE FUNCTION fn_Produtos_Indisponivel()
+RETURNS TABLE
+AS
+RETURN
+SELECT id, nome, preco, status
+FROM Produtos
+WHERE status = 'indisponivel';
+
+/*para chamar ela */
+SELECT * FROM fn_Produtos_Indisponivel();
