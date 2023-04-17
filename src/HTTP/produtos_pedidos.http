@@ -8,13 +8,13 @@ Content-Type: application/json
 
 ###
 // POST - Insere um novo Produtos*/
-POST {{baseURL}}/Produtos
+POST {{baseURL}}/produtos
 Content-Type: application/json
 
 { 
     "nome": "play",
     "preco": 28500,
-    "status": "disponuvel"     
+    "status": "disponivel"     
 }
 
 ###
@@ -24,13 +24,13 @@ Content-Type: application/json
 
 {
       
-    "nome": "PLAYSTATION5",
-    "preco": 10400,
+    "nome": "play",
+    "preco": 28500,
     "status": "disponivel"
 }
 
 
 ###
 // DELETE - Apaga um produto pelo nome
-DELETE {{baseURL}}/produtos
+DELETE {{baseURL}}/produtos/play
 Content-Type: application/json
