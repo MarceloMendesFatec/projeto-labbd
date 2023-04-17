@@ -1,0 +1,37 @@
+//Teste de Requisições REST - PRODUTOS E PEDIDOS
+@baseURL = http://localhost:4000/api
+
+// GET - Lista todos os Produtos
+GET {{baseURL}}/produtos
+Content-Type: application/json
+
+
+###
+// POST - Insere um novo Produtos
+POST {{baseURL}}/produtos
+Content-Type: application/json
+
+{
+    
+    "nome": "PLAYSTATION5",
+    "preco": 10400,
+    
+}
+
+###
+// PUT - Altera o produto
+PUT {{baseURL}}/produtos
+Content-Type: application/json
+
+{
+      
+    "nome": "PLAYSTATION5",
+    "preco": 10400,
+    "status": "disponivel,  
+}
+
+
+###
+// DELETE - Apaga um produto pelo nome
+DELETE {{baseURL}}/produtos/PLAYSTATION5
+Content-Type: application/json
