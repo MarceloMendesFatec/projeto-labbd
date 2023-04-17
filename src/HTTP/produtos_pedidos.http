@@ -7,14 +7,14 @@ Content-Type: application/json
 
 
 ###
-// POST - Insere um novo Produtos
-POST {{baseURL}}/produtos
+// POST - Insere um novo Produtos*/
+POST {{baseURL}}/Produtos
 Content-Type: application/json
 
 { 
     "nome": "play",
     "preco": 28500,
-    "status": "indisponivel"     
+    "status": "disponuvel"     
 }
 
 ###
