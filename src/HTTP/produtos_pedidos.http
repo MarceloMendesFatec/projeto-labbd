@@ -23,14 +23,14 @@ PUT {{baseURL}}/produtos
 Content-Type: application/json
 
 {
-      
-    "nome": "play",
+    "id": 5,  
+    "nome": "outro",
     "preco": "28500",
-    "status": "disponivel"
+    "status": "kkk"
 }
 
 
 ###
 // DELETE - Apaga um produto pelo nome
-DELETE {{baseURL}}/produtos/play
+DELETE {{baseURL}}/play
 Content-Type: application/json

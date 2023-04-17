@@ -76,7 +76,7 @@ router.delete('/:nome', (req, res) => {
 /****************** TABELA 2 *************************/
 
 // lista todos os pedidos
-router.get('/Produtos', (_req, res) => {
+router.get('/pedidos', (_req, res) => {
     try {
         sql.connect(sqlConfig).then(pool => {
             return pool.request()
@@ -92,7 +92,7 @@ router.get('/Produtos', (_req, res) => {
 })
  // Post dos pedidos/*
  
-router.post('/', (req, res) => {
+router.post('/pedidos', (req, res) => {
     sql.connect(sqlConfig).then(pool => {
         const {  cliente, valortotal } = req.body
         return pool
@@ -110,7 +110,7 @@ router.post('/', (req, res) => {
 
 
 //Put, altera um  pedido existente  */ 
-router.put('/', (req, res) => {
+router.put('/pedidos', (req, res) => {
     sql.connect(sqlConfig).then(pool => {
         const {  cliente, datapedido, valortotal, status, codigopedido, idProduto } = req.body
         return pool
