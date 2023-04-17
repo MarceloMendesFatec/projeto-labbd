@@ -6,11 +6,11 @@ import { sqlConfig } from '../sql/config.js'
 const router = express.Router()
 
 // lista todos os produtos 
-router.get('/', (_req, res) => {
+router.get('/produtos', (_req, res) => {
     try {
         sql.connect(sqlConfig).then(pool => {
             return pool.request()
-                .execute('sp_Produtos_ConsultarTodos')
+                .execute("sp_Produtos_ConsultarTodos")
         }).then(dados => {
             res.status(200).json(dados.recordset)
         }).catch(err => {
@@ -22,15 +22,15 @@ router.get('/', (_req, res) => {
 })
  // Post insere os produtos /*
  
-router.post('/', (req, res) => {
+router.post('/produtos', (req, res) => {
     sql.connect(sqlConfig).then(pool => {
         const {  nome, preco, status } = req.body
         return pool
             .request()
-            .input('NOME', sql.VarChar(50), nome)
-            .input('PRECO', sql.Decimal(10,2), preco)
-            .input('STATUS', sql.VarChar(10), status)
-            .execute('sp_Produtos_Inserir')
+            .input("NOME", sql.VarChar(50), nome)
+            .input("PRECO", sql.Decimal(10,2), preco)
+            .input("STATUS", sql.VarChar(10), status)
+            .execute("sp_Produtos_Inserir")
     }).then(dados => {
         res.status(200).json(dados.output)
     }).catch(err => {
@@ -40,15 +40,15 @@ router.post('/', (req, res) => {
 
 
 //Put altera produto existente  */ 
-router.put('/', (req, res) => {
+router.put('/produtos', (req, res) => {
     sql.connect(sqlConfig).then(pool => {
         const {  nome, preco, status } = req.body
         return pool
             .request()
-            .input('NOME', sql.VarChar(50), nome)
-            .input('PRECO', sql.Decimal(10,2), preco)
-            .input('STATUS', sql.VarChar(10), status)
-            .execute('sp_Produtos_Alterar')      
+            .input("NOME", sql.VarChar(50), nome)
+            .input("PRECO", sql.Decimal(10,2), preco)
+            .input("STATUS", sql.VarChar(10), status)
+            .execute("sp_Produtos_Alterar")      
     }).then(dados => {
         res.status(200).json('Produto alterado com sucesso!!')
     }).catch(err => {
@@ -63,8 +63,8 @@ router.delete('/:nome', (req, res) => {
     sql.connect(sqlConfig).then(pool => {
         const nome = req.params.nome
         return pool.request()
-            .input('NOME', sql.VarChar(50), nome)
-            .execute('sp_Produtos_Deletar')           
+            .input("NOME", sql.VarChar(50), nome)
+            .execute("sp_Produtos_Deletar")           
     }).then(dados => {
         res.status(200).json('Deletado com sucesso')
     }).catch(err => {
@@ -76,11 +76,11 @@ router.delete('/:nome', (req, res) => {
 /****************** TABELA 2 *************************/
 
 // lista todos os pedidos
-router.get('/', (_req, res) => {
+router.get('/Produtos', (_req, res) => {
     try {
         sql.connect(sqlConfig).then(pool => {
             return pool.request()
-                .execute('sp_Pedidos_ConsultarTodos')
+                .execute("sp_Pedidos_ConsultarTodos")
         }).then(dados => {
             res.status(200).json(dados.recordset)
         }).catch(err => {

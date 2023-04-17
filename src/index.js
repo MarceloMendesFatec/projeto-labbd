@@ -10,8 +10,8 @@ app.use(cors()) //Habilita o CORS
 app.use(express.urlencoded({extended: true}))
 app.use(express.json()) // Parse JSON
 
-app.use('/api/produtos',rotasLoja)
-app.use('/api/pedidos',rotasLoja)
+app.use('/',rotasLoja)
+
 /* Rotas públicas */
 app.use('/', express.static('public'))
 
