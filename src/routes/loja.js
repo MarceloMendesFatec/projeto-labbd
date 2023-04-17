@@ -24,12 +24,13 @@ router.get('/', (_req, res) => {
  
 router.post('/', (req, res) => {
     sql.connect(sqlConfig).then(pool => {
-        const {  nome, preco } = req.body
+        const {  nome, preco, status } = req.body
         return pool
             .request()
             .input('NOME', sql.VarChar(50), nome)
             .input('PRECO', sql.Decimal(10,2), preco)
-            
+            .input('STATUS', sql.VarChar(10), status)
+            .execute('sp_Produtos_Inserir')
     }).then(dados => {
         res.status(200).json(dados.output)
     }).catch(err => {
@@ -41,7 +42,7 @@ router.post('/', (req, res) => {
 //Put altera produto existente  */ 
 router.put('/', (req, res) => {
     sql.connect(sqlConfig).then(pool => {
-        const {  nome, preco } = req.body
+        const {  nome, preco, status } = req.body
         return pool
             .request()
             .input('NOME', sql.VarChar(50), nome)

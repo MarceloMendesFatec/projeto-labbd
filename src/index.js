@@ -9,10 +9,9 @@ const port = 4000
 app.use(cors()) //Habilita o CORS
 app.use(express.urlencoded({extended: true}))
 app.use(express.json()) // Parse JSON
-/* Rotas do Veículo */
-// app.use('/api/veiculos', rotasVeiculos)
 
-app.use('/produtos',rotasLoja) //)
+app.use('/api/produtos',rotasLoja)
+app.use('/api/pedidos',rotasLoja)
 /* Rotas públicas */
 app.use('/', express.static('public'))
 

@@ -11,11 +11,10 @@ Content-Type: application/json
 POST {{baseURL}}/produtos
 Content-Type: application/json
 
-{
-    
-    "nome": "PLAYSTATION5",
-    "preco": 10400,
-    
+{ 
+    "nome": "play",
+    "preco": 28500,
+    "status": "indisponivel"     
 }
 
 ###
@@ -27,11 +26,11 @@ Content-Type: application/json
       
     "nome": "PLAYSTATION5",
     "preco": 10400,
-    "status": "disponivel,  
+    "status": "disponivel"
 }
 
 
 ###
 // DELETE - Apaga um produto pelo nome
-DELETE {{baseURL}}/produtos/PLAYSTATION5
+DELETE {{baseURL}}/produtos
 Content-Type: application/json
